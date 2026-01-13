@@ -59,7 +59,7 @@
           </div>
 
           <div class="field-group">
-            <label for="endpoint">Backend upload endpoint</label>
+            <label for="endpoint">Python backend upload endpoint</label>
             <div class="endpoint-row">
               <input
                 type="url"
@@ -70,24 +70,49 @@
               />
               <button type="button" id="reset-endpoint">Reset</button>
             </div>
-            <p class="helper">Use the HTTPS endpoint that accepts multipart/form-data.</p>
+            <p class="helper">
+              Use a Python (FastAPI/Flask) HTTPS endpoint that accepts multipart/form-data.
+            </p>
+          </div>
+
+          <div class="field-group">
+            <label for="validate-endpoint">Python backend validation endpoint</label>
+            <input
+              type="url"
+              id="validate-endpoint"
+              name="validate-endpoint"
+              value="https://api.example.com/documents/validate"
+              required
+            />
+            <p class="helper">
+              This endpoint should return validation results and the extracted data as JSON.
+            </p>
           </div>
 
           <div class="actions">
             <button type="submit" id="submit-button">Upload &amp; trigger pipeline</button>
+            <button type="button" id="validate-button" class="ghost" disabled>Validate data</button>
             <button type="button" id="clear-button" class="ghost">Clear form</button>
           </div>
 
           <div class="status" role="status" aria-live="polite" aria-atomic="true">
             <p id="status-message">Ready to upload.</p>
           </div>
+
+          <div class="json-output" aria-live="polite">
+            <div class="output-header">
+              <h3>Extracted data (JSON)</h3>
+              <p class="helper">Displayed after upload or validation.</p>
+            </div>
+            <pre id="json-output" aria-label="Extracted JSON output">{}</pre>
+          </div>
         </form>
 
         <section class="card info">
           <h2>What happens next?</h2>
           <ol>
-            <li>The backend service parses the document and extracts structured data.</li>
-            <li>Validation rules are applied to confirm required metadata.</li>
+            <li>The Python backend parses the document and extracts structured data.</li>
+            <li>Click “Validate data” to run server-side checks and return JSON output.</li>
             <li>The Azure DevOps pipeline is triggered with the extracted payload.</li>
           </ol>
           <p class="disclaimer">
