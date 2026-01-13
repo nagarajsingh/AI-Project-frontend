@@ -121,6 +121,7 @@ textarea:focus {
 .actions {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 button {
@@ -166,6 +167,42 @@ button.ghost {
 .status.error {
   background: #fef2f2;
   color: #b91c1c;
+}
+
+.json-output {
+  margin-top: 20px;
+  border-radius: 12px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: none;
+}
+
+.json-output.visible {
+  display: block;
+}
+
+.output-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.json-output h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.json-output pre {
+  margin: 0;
+  padding: 16px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  max-height: 260px;
 }
 
 .info h2 {
