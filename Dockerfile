@@ -1,7 +1,18 @@
-FROM nginx:1.27-alpine
+FROM python:3.11-alpine
 
-COPY index.html /usr/share/nginx/html/index.html
-COPY styles.css /usr/share/nginx/html/styles.css
-COPY app.js /usr/share/nginx/html/app.js
+WORKDIR /app
 
-EXPOSE 80
+RUN apk add --no-cache nginx
+
+COPY backend/requirements.txt /app/backend/requirements.txt
+RUN pip install --no-cache-dir -r /app/backend/requirements.txt
+
+COPY backend /app/backend
+COPY index.html styles.css app.js /var/lib/nginx/html/
+COPY start.sh /app/start.sh
+
+RUN chmod +x /app/start.sh
+
+EXPOSE 80 8000
+
+CMD ["/app/start.sh"]
