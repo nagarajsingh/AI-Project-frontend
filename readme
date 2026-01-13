@@ -15,3 +15,5 @@ docker run --rm -p 8080:80 -p 8000:8000 document-intake-app
 Then open:
 - Frontend: http://localhost:8080
 - Backend: http://localhost:8000/docs
+
+If you only see backend logs, the frontend is still running on port 8080 via nginx.
