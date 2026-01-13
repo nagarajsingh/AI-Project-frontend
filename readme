@@ -1,1 +1,13 @@
-test
+## Run with Docker
+
+Build the image:
+
+```bash
+docker build -t document-intake-app .
+```
+
+Run the container (frontend on port 8080, backend on 8000):
+
+```bash
+docker run --rm -p 8080:80 -p 8000:8000 document-intake-app
+```
